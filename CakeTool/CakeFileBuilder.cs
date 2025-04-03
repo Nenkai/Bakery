@@ -550,7 +550,17 @@ public class CakeFileBuilder
         if (RegistryType == CakeRegistryType.External)
             _logger?.LogWarning("Cake is built as external, make sure the contents are present in the game root.");
 
-        Directory.Delete(_tempDir, recursive: true);
+        if (Directory.Exists(_tempDir))
+        {
+            try
+            {
+                Directory.Delete(_tempDir, recursive: true);
+            }
+            catch (Exception)
+            {
+                _logger?.LogWarning( "Failed to delete leftover temp directory ({dir}).", _tempDir);
+            }
+        }
     }
 
     private void WriteSection(Action<BinaryStream> writeCallback)

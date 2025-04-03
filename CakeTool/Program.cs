@@ -18,7 +18,7 @@ public class Program
     private static ILoggerFactory _loggerFactory;
     private static Microsoft.Extensions.Logging.ILogger _logger;
 
-    public const string Version = "1.0.0";
+    public const string Version = "1.0.1";
 
     static void Main(string[] args)
     {

@@ -4,6 +4,7 @@ Cake archive extraction/builder tool for .cak archives.
 
 ## Support
 
+Supports extracting files from all known games/cake archives.
 * v6.7
 * v6.8
 * v8.1 (use force no enc flag)

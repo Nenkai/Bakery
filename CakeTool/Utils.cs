@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,5 +57,14 @@ public static class Utils
         }
 
         return (readable / 1024).ToString("0.## ", CultureInfo.InvariantCulture) + suffix;
+    }
+
+    public static string GetCurrentExecutingPath()
+    {
+        string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        if (string.IsNullOrEmpty(assemblyLocation)) // This may be empty if we compiled the executable as single-file.
+            assemblyLocation = Environment.GetCommandLineArgs()[0]!;
+
+        return assemblyLocation;
     }
 }

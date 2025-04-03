@@ -33,6 +33,7 @@ public class Program
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine("");
 
+
         var p = Parser.Default.ParseArguments<UnpackCakeVerbs, UnpackFileVerbs, PackCakeVerbs, MpbToTxtVerbs, TdbDumpVerbs>(args)
             .WithParsed<UnpackCakeVerbs>(UnpackCake)
             .WithParsed<UnpackFileVerbs>(UnpackFile)
@@ -43,6 +44,9 @@ public class Program
 
     static void UnpackFile(UnpackFileVerbs verbs)
     {
+        if (!CheckOodle())
+            return;
+
         if (!File.Exists(verbs.InputFile))
         {
             _logger.LogError("File '{path}' does not exist", verbs.InputFile);
@@ -78,6 +82,9 @@ public class Program
 
     static void UnpackCake(UnpackCakeVerbs verbs)
     {
+        if (!CheckOodle())
+            return;
+
         if (!File.Exists(verbs.InputFile))
         {
             _logger.LogError("File '{path}' does not exist", verbs.InputFile);
@@ -132,6 +139,9 @@ public class Program
 
     static void PackCake(PackCakeVerbs verbs)
     {
+        if (!CheckOodle())
+            return;
+
         if (!Directory.Exists(verbs.InputDirectory))
         {
             _logger.LogError("Directory '{path}' does not exist", verbs.InputDirectory);
@@ -186,6 +196,19 @@ public class Program
         {
             _logger.LogCritical(ex, "Failed to unpack.");
         }
+    }
+
+    private static bool CheckOodle()
+    {
+        string toolLocation = Utils.GetCurrentExecutingPath();
+        string oodleLocation = Path.Combine(Path.GetDirectoryName(toolLocation), "oo2core_9_win64.dll");
+        if (!File.Exists(oodleLocation))
+        {
+            _logger.LogError("Oodle DLL (oo2core_9_win64.dll) is missing next to the executable. Copy it from one of the games.");
+            return false;
+        }
+
+        return true;
     }
 }
 

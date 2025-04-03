@@ -354,7 +354,7 @@ public class CakeRegistryFile : AbstractVersionableCakeEntity, IDisposable
         // Normally i'd just use entry.CompressedSize
         // But due to a bug in earlier versions where I wasn't setting CompressedSize correctly
         // Only last chunk offset is valid, oops.
-        uint size = entry.ChunkEndOffsets[^1]; // entry.CompressedSize;
+        uint size = entry.ChunkEndOffsets.Count > 0 ? entry.ChunkEndOffsets[^1] : entry.CompressedSize; // entry.CompressedSize;
         using var inputBuffer = MemoryOwner<byte>.Allocate((int)size);
 
         _fileStream.ReadExactly(inputBuffer.Span);

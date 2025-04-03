@@ -632,9 +632,9 @@ public class CakeFileBuilder
             inputStream.ReadExactly(decChunk);
 
             long compSize = Oodle.Compress(OodleFormat.Kraken,
-                in MemoryMarshal.GetReference(decChunk),
+                decChunk,
                 chunkSize,
-                in MemoryMarshal.GetReference(compBuffer.Span),
+                compBuffer.Span,
                 OodleCompressionLevel.Normal);
 
             if (compSize == 0)

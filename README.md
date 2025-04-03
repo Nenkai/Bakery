@@ -22,6 +22,9 @@ Cake archive extraction/builder tool for .cak archives.
 * Unpacking a specific file from a cake archive: `CakeTool.exe unpack-file -i <path to .cak> -f <game file path> [-o output path]`
 * Packing a cake: `CakeTool.exe pack -i <path to folder> -v <version>` version is 9.2 (24) or 9.3 (25). Earlier is untested.
 
+> [!NOTE]  
+> Arguments wrapped in `<>` are required and `[]` are optional.
+
 ## Modding
 
 A hook is provided in releases. Please read the release notes.

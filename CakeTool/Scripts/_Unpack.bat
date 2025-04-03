@@ -6,7 +6,7 @@ if ["%~1"]==[""] (
 )
 	  
 
-CakeTool.exe unpack-cak -i %1
+%~dp0/CakeTool.exe unpack-cak -i %1
 
 :end
 pause

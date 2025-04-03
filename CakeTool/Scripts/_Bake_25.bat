@@ -7,7 +7,7 @@ if ["%~1"]==[""] (
 	  
 echo Packing for 9.3.
 
-CakeTool.exe pack -i %1 -v 9.3
+%~dp0/CakeTool.exe pack -i %1 -v 9.3
 
 :end
 pause

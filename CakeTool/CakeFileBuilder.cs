@@ -28,8 +28,8 @@ namespace CakeTool;
 
 public class CakeFileBuilder
 {
-    private readonly ILoggerFactory _loggerFactory;
-    private readonly ILogger _logger;
+    private readonly ILoggerFactory? _loggerFactory;
+    private readonly ILogger? _logger;
 
     private List<CakeFileEntry> _files = [];
     private List<CakeDirInfo> _dirs = [];

@@ -649,7 +649,7 @@ public class CakeFileBuilder
             fileEntry.ChunkEndOffsets[chunkIndex++] = (uint)baseOffset;
         }
 
-        fileEntry.CompressedSize = (uint)outputStream.Length;
+        fileEntry.CompressedSize = (uint)baseOffset;
     }
 
     private uint GetFullHeaderSize()

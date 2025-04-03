@@ -351,7 +351,12 @@ public class CakeRegistryFile : AbstractVersionableCakeEntity, IDisposable
         string gamePath = GetGamePathForEntry(entry);
         _fileStream.Position = (long)entry.DataOffset;
 
-        using var inputBuffer = MemoryOwner<byte>.Allocate((int)entry.CompressedSize);
+        // Normally i'd just use entry.CompressedSize
+        // But due to a bug in earlier versions where I wasn't setting CompressedSize correctly
+        // Only last chunk offset is valid, oops.
+        uint size = entry.ChunkEndOffsets[^1]; // entry.CompressedSize;
+        using var inputBuffer = MemoryOwner<byte>.Allocate((int)size);
+
         _fileStream.ReadExactly(inputBuffer.Span);
 
         if ((VersionMajor == 6 && IsFileDataEncrypted) ||

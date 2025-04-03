@@ -1,6 +1,6 @@
 # CakeTool
 
-Tool/decryption tool for .cak archives (WIP).
+Cake archive extraction/builder tool for .cak archives.
 
 ## Support
 
@@ -15,6 +15,12 @@ Tool/decryption tool for .cak archives (WIP).
 * v9.3
 
 This repo is only provided for reference/documentation. No support will be provided.
+
+## Usage
+
+* Unpacking cakes: `CakeTool.exe unpack-cak -i <path to .cak>` - **make sure the cake file name hasn't been renamed.**.
+* Unpacking a specific file from a cake archive: `CakeTool.exe unpack-file -i <path to .cak> -f <game file path> [-o output path]`
+* Packing a cake: `CakeTool.exe pack -i <path to folder> -v <version>` version is 9.2 (24) or 9.3 (25). Earlier is untested.
 
 ## Building
 

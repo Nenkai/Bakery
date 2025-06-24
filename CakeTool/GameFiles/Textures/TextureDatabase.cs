@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ public class TextureDatabase
     /// <summary>
     /// 'T_DB'
     /// </summary>
-    public const uint MAGIC = 0x42445F54;
+    public static readonly uint MAGIC = BinaryPrimitives.ReadUInt32LittleEndian("T_DB"u8);
 
     public TextureDatabase(byte version = 6)
     {
@@ -44,7 +45,9 @@ public class TextureDatabase
     public void Read(Stream stream)
     {
         var bs = new BinaryStream(stream, ByteConverter.Little);
-        if (bs.ReadUInt32() != MAGIC) // T_DB
+        uint magic = bs.ReadUInt32();
+        if (magic != MAGIC && 
+            magic != 0x4244545F) // _TDB (not sure which tool generates _TDB..? that doesn't even seem valid)
             throw new InvalidDataException("Could not read texture database - file is not a texture database.");
 
         Version = bs.ReadUInt32();

@@ -380,6 +380,10 @@ public class CakeRegistryFile : AbstractVersionableCakeEntity, IDisposable
         else
         {
             // 9.0 introduced chunked decompression.
+
+            // NOTE: Some other tools produces borked cakes with 9.3 as version, and are non-chunked (1 chunk in array) when they should be chunked
+            // -> These tools may be borked
+
             if (IsAtLeastVersion(9, 0))
                 ExtractChunked(entry, gamePath, inputBuffer.Span, outputStream);
             else

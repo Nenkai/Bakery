@@ -165,7 +165,7 @@ public class CakeFileBuilder
             {
                 if (relativeSubEntryPath.Equals("_textures.tdb"))
                 {
-                    _logger.LogWarning("Skipping _textures.tdb in folder as we're rebuilding it");
+                    _logger?.LogWarning("Skipping _textures.tdb in folder as we're rebuilding it");
                     continue;
                 }
 
@@ -183,7 +183,7 @@ public class CakeFileBuilder
         {
             if (!IsAtLeastVersion(9))
             {
-                _logger.LogWarning("Texture packing is not yet supported for cakes <9.1. Skipping '{path}'", relativeSubEntryPath);
+                _logger?.LogWarning("Texture packing is not yet supported for cakes <9.1. Skipping '{path}'", relativeSubEntryPath);
                 return;
             }
 
@@ -632,7 +632,6 @@ public class CakeFileBuilder
         using MemoryOwner<byte> decBuffer = MemoryOwner<byte>.Allocate((int)decChunkSize);
         using MemoryOwner<byte> compBuffer = MemoryOwner<byte>.Allocate((int)decChunkSize);
 
-
         int chunkIndex = 0;
         while (size > 0)
         {
@@ -649,6 +648,8 @@ public class CakeFileBuilder
 
             if (compSize == 0)
                 throw new IOException("Failed to compress oodle chunk?");
+            else if (compSize > decChunkSize)
+                throw new IOException("Compressed file is larger than decompressed file. Compressing an already compressed file?");
 
             Span<byte> compChunk = compBuffer.Span.Slice(0, (int)compSize);
             outputStream.Write(compChunk);

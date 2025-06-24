@@ -19,6 +19,8 @@ Supports extracting files from all known games/cake archives.
 
 ### Download in [Releases](https://github.com/Nenkai/CakeTool/releases).
 
+Some batch (`.bat`) scripts are included which can be used by dropping files or folders into them. Otherwise:
+
 * Unpacking cakes: `CakeTool.exe unpack-cak -i <path to .cak>` - **make sure the cake file name hasn't been renamed**.
 * Unpacking a specific file from a cake archive: `CakeTool.exe unpack-file -i <path to .cak> -f <game file path> [-o output path]`
 * Packing a cake: `CakeTool.exe pack -i <path to folder> -v <version>` version is 9.2 (24) or 9.3 (25). Earlier is untested.

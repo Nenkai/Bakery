@@ -14,6 +14,7 @@ Supports extracting files from all known games/cake archives.
 * v9.1
 * v9.2
 * v9.3
+* v9.9 (not currently public)
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# CakeTool
+# Bakery
 
 Cake archive extraction/builder tool for .cak archives.
 
